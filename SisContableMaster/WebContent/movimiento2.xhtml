@@ -14,14 +14,14 @@
 	<p:menubar>
 		<p:menuitem value="Obra externa" url="movimiento.xhtml" >
 		</p:menuitem>
-						<p:menuitem value="Retenciones Bancarias" url="movimiento2.xhtml" >
+				<p:menuitem value="Retenciones Bancarias" url="movimiento2.xhtml" >
 		</p:menuitem>
 	</p:menubar>
 </h:form>
 <h:body>
 	<p:growl id="msj" />
 	<h:form id="datos">
-	<p:dataTable value="#{movimientoController.listaMovimiento}" var="c" rows="5" paginator="true">
+	<p:dataTable value="#{movimientoController.listaAll}" var="c" rows="5" paginator="true">
 	<p:column headerText="idMovimiento">
 	<h:outputText value="#{c.idMovimiento}" />
 	</p:column>

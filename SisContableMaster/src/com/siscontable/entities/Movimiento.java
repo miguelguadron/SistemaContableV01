@@ -11,7 +11,11 @@ import java.util.Date;
  * 
  */
 @Entity
-@NamedQuery(name="Movimiento.findAll", query="SELECT m FROM Movimiento m")
+@NamedQueries({
+@NamedQuery(name="Movimiento.findAll", query="SELECT m FROM Movimiento m"),
+@NamedQuery(name = "Movimiento1", query="SELECT m FROM Movimiento m where m.codPlanilla = ?1"),
+@NamedQuery(name = "filtrado1", query="SELECT m FROM Movimiento m where m.codPlanilla like 'oe%' ")
+})
 public class Movimiento implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int idMovimiento;
