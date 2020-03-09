@@ -19,7 +19,7 @@
 		<class>com.siscontable.entities.Pais</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sis_contabilidad1"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sis_contabilidad1?useSSL=false"/>
 			<property name="javax.persistence.jdbc.user" value="root"/>
 			<property name="javax.persistence.jdbc.password" value="root"/>
 		</properties>

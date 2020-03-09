@@ -32,8 +32,8 @@ public class SueldoFijo implements Serializable {
 	private int horasLaboradas;
 	private BigDecimal sueldo;
 	private byte vacaciones;
-	private DeducionesLegale deducionesLegale;
 	private Empleado empleado;
+	private DeducionesLegale deducionesLegale;
 
 	public SueldoFijo() {
 	}
@@ -201,18 +201,6 @@ public class SueldoFijo implements Serializable {
 	}
 
 
-	//bi-directional many-to-one association to DeducionesLegale
-	@ManyToOne
-	@JoinColumn(name="id_impuesto")
-	public DeducionesLegale getDeducionesLegale() {
-		return this.deducionesLegale;
-	}
-
-	public void setDeducionesLegale(DeducionesLegale deducionesLegale) {
-		this.deducionesLegale = deducionesLegale;
-	}
-
-
 	//bi-directional many-to-one association to Empleado
 	@ManyToOne
 	@JoinColumn(name="id_empleado")
@@ -222,6 +210,18 @@ public class SueldoFijo implements Serializable {
 
 	public void setEmpleado(Empleado empleado) {
 		this.empleado = empleado;
+	}
+
+
+	//bi-directional many-to-one association to DeducionesLegale
+	@ManyToOne
+	@JoinColumn(name="id_impuesto")
+	public DeducionesLegale getDeducionesLegale() {
+		return this.deducionesLegale;
+	}
+
+	public void setDeducionesLegale(DeducionesLegale deducionesLegale) {
+		this.deducionesLegale = deducionesLegale;
 	}
 
 }
