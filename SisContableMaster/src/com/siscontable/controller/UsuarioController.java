@@ -10,7 +10,6 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
 import com.siscontable.dao.UsuarioDao;
-import com.siscontable.entities.Empleado;
 import com.siscontable.entities.Empresa;
 import com.siscontable.entities.Usuario;
 
