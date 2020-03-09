@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title></title>
+</h:head>
+<h:body>
+	<h2>Empleados</h2>
+	<p:commandButton value="Agregar empleado" onclick="PF('emp').show();"></p:commandButton>
+
+	<p:dataTable>
+
+	</p:dataTable>
+
+
+	<p:dialog widgetVar="emp" modal="true" resizable="true"
+		responsive="true">
+		<h:form>
+			<p:wizard>
+				<p:tab>
+					<p:panel>
+						<p:panelGrid columns="6">
+							<p:outputLabel value="Nombre Completo" />
+							<p:inputText value="#{empleadoController.empleado.nombres}" />
+
+							<p:outputLabel value="Apellidos"></p:outputLabel>
+							<p:inputText value="#{empleadoController.empleado.apellidos}" />
+
+							<p:outputLabel value="sexo" />
+							<p:selectOneRadio value="#{empleadoController.empleado.sexo}">
+								<f:selectItem itemLabel="Masculino" itemValue="M" />
+								<f:selectItem itemLabel="Fenino" itemValue="F" />
+								<f:selectItem itemLabel="Otro genero" itemValue="O" />
+							</p:selectOneRadio>
+
+							<p:outputLabel value="fecha_nacimiento" />
+							<p:calendar
+								value="#{empleadoController.empleado.fechaNacimiento}" mask="99/99/9999" placeholder="dd/mm/yyyy" navigator="true" showTodayButton="true" inputStyle="true"/>
+
+							<p:outputLabel value="dui" />
+							<p:inputMask mask="9999999-9" value="#{empleadoController.empleado.dui}" />
+
+							<p:outputLabel value="nup" />
+							<p:inputMask mask="9999-99999999-999-9" value="#{empleadoController.empleado.nup}" />
+
+							<p:outputLabel value="isss" />
+							<p:inputMask mask="999999999" value="#{empleadoController.empleado.isss}" />
+
+							<p:outputLabel value="fecha inicio" />
+							<p:calendar value="#{empleadoController.empleado.fechaInicio}" mask="99/99/9999" placeholder="dd/mm/yyyy" navigator="true" showTodayButton="true" inputStyle="true"/>
+
+							<p:outputLabel value="fecha finalizacion" />
+							<p:calendar value="#{empleadoController.empleado.fechaFin}" mask="99/99/9999" placeholder="dd/mm/yyyy" navigator="true" showTodayButton="true" inputStyle="true" />
+
+						</p:panelGrid>
+					</p:panel>
+				</p:tab>
+
+				<p:tab>
+					<p:panel>
+						<p:panelGrid columns="6">
+							<p:outputLabel value="Usuario" />
+							<p:selectOneMenu value="#{empleadoController.iduser}">
+								<f:selectItems value="#{usuarioController.listuser}" var="usu"
+									itemLabel="#{usu.nombre}" itemValue="#{usu.idUser}"></f:selectItems>
+							</p:selectOneMenu>
+
+							<p:outputLabel value="Cargo" />
+							<p:selectOneMenu value="#{empleadoController.idcargo}">
+								<f:selectItems value="#{cargoController.listaCargo}" var="cargo"
+									itemLabel="#{cargo.nombre}" itemValue="#{cargo.idCargo}"></f:selectItems>
+							</p:selectOneMenu>
+
+							<p:outputLabel value="Area de la empresa" />
+							<p:selectOneMenu value="#{empleadoController.iddepart}">
+								<f:selectItems value="#{departamentoController.listaDepa}"
+									var="depa" itemLabel="#{depa.nombre}"
+									itemValue="#{depa.idDepartamento}" />
+							</p:selectOneMenu>
+						</p:panelGrid>
+					</p:panel>
+				</p:tab>
+			</p:wizard>
+		</h:form>
+	</p:dialog>
+</h:body>
+</html>

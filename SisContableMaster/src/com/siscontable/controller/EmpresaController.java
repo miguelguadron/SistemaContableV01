@@ -1,6 +1,7 @@
 package com.siscontable.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -51,8 +52,9 @@ public class EmpresaController {
 			
 			Estado idest = new Estado();
 			idest.setIdEstado(idesta);
-			
 			empresa.setEstado(idest);
+			
+			empresa.setFechaCreacion(new Date());
 			
 			empDao.guardar(empresa);
 			mensaje("Se creo la empresa correctamente");

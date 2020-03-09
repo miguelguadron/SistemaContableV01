@@ -24,7 +24,7 @@ public class Estado implements Serializable {
 	private String nombre;
 	private List<DeducionesLegale> deducionesLegales;
 	private List<Empresa> empresas;
-	private Pais pai;
+	private Pais pais;
 
 	public Estado() {
 	}
@@ -161,11 +161,11 @@ public class Estado implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="id_pais")
 	public Pais getPais() {
-		return this.pai;
+		return this.pais;
 	}
 
-	public void setPais(Pais pai) {
-		this.pai = pai;
+	public void setPais(Pais pais) {
+		this.pais = pais;
 	}
 
 }
