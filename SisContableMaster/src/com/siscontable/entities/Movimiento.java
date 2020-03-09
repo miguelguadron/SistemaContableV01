@@ -25,7 +25,7 @@ public class Movimiento implements Serializable {
 	private String atributo7;
 	private String atributo8;
 	private String atributo9;
-	private int estadoMovimiento;
+	private String codPlanilla;
 	private Date fechaCreacion;
 	private String nombreMovimiento;
 	private String observaciones;
@@ -141,13 +141,13 @@ public class Movimiento implements Serializable {
 	}
 
 
-	@Column(name="estado_movimiento")
-	public int getEstadoMovimiento() {
-		return this.estadoMovimiento;
+	@Column(name="cod_planilla")
+	public String getCodPlanilla() {
+		return this.codPlanilla;
 	}
 
-	public void setEstadoMovimiento(int estadoMovimiento) {
-		this.estadoMovimiento = estadoMovimiento;
+	public void setCodPlanilla(String codPlanilla) {
+		this.codPlanilla = codPlanilla;
 	}
 
 

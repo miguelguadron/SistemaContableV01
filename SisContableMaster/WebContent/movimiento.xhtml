@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title></title>
+</h:head>
+<h:body>
+<p:growl id="msj" />
+<h:form id="datos">
+<p:dataTable value="#{movimientoController.listaMovimiento}" var="#{m}" rows="5" paginator="true">
+<p:column headerText="id_movimiento">
+<h:outputText value="#{m.idMovimiento}" />
+</p:column>
+<p:column headerText="cod_planilla">
+<h:outputText value="#{m.codPlanilla}" />
+</p:column>
+<p:column headerText="nombre_movimiento">
+<h:outputText value="#{m.nombreMovimiento}" />
+</p:column>
+<p:column headerText="Observaciones">
+<h:outputText value="#{m.observaciones}" />
+</p:column>
+<p:column headerText="total">
+<h:outputText value="#{m.total}" />
+</p:column>
+</p:dataTable>
+</h:form>
+</h:body>
+</html>
