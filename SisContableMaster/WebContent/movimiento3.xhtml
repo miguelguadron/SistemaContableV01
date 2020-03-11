@@ -16,7 +16,7 @@
 	         <br></br>
 		    <p:toolbar>
         <f:facet name="left">
-            <p:commandButton  value="Nuevo" icon="pi pi-file" oncomplete="PF('modal').show()" />
+            <p:commandButton value="Nuevo" icon="pi pi-file" oncomplete="PF('modal').show()" />
  
             <p:commandButton type="button" value="Abrir" icon="pi pi-folder-open" />
  
@@ -31,7 +31,7 @@
          </p:toolbar>
 
 	<h:form id="datos">
-	<p:dataTable value="#{movimientoController.listaMovimiento2}" var="c" rows="5" paginator="true">
+	<p:dataTable value="#{movimientoController.listaMovimiento3}" var="c" rows="5" paginator="true">
 	<p:column headerText="idMovimiento">
 	<h:outputText value="#{c.idMovimiento}" />
 	</p:column>
@@ -54,7 +54,7 @@
 	<p:dialog widgetVar="modal" showEffect="clip" draggable="false"  >
 	<p:panelGrid columns="2">
 	<h:outputText value="Esto es prueba"/>
-	<p:inputText value="hjdsasd" />
+	<p:inputText value="hasdfsa" />
 	</p:panelGrid>
 	</p:dialog>
 		</h:form>

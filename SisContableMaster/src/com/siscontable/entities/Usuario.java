@@ -2,6 +2,7 @@ package com.siscontable.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 
@@ -17,6 +18,8 @@ public class Usuario implements Serializable {
 	private String apellido;
 	private String contrasena;
 	private String correo;
+	private Date fechaModificacion;
+	private Date fechaRegistro;
 	private String nombre;
 	private String usuario;
 	private List<Empleado> empleados;
@@ -62,6 +65,28 @@ public class Usuario implements Serializable {
 
 	public void setCorreo(String correo) {
 		this.correo = correo;
+	}
+
+
+	@Temporal(TemporalType.DATE)
+	@Column(name="fecha_modificacion")
+	public Date getFechaModificacion() {
+		return this.fechaModificacion;
+	}
+
+	public void setFechaModificacion(Date fechaModificacion) {
+		this.fechaModificacion = fechaModificacion;
+	}
+
+
+	@Temporal(TemporalType.DATE)
+	@Column(name="fecha_registro")
+	public Date getFechaRegistro() {
+		return this.fechaRegistro;
+	}
+
+	public void setFechaRegistro(Date fechaRegistro) {
+		this.fechaRegistro = fechaRegistro;
 	}
 
 

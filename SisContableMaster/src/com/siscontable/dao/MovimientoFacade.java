@@ -54,6 +54,30 @@ public class MovimientoFacade extends AbstractFacade<Movimiento> implements Seri
 		}
 	}
 	
+	public List<Movimiento> listaLike2(){
+		try {
+			Query q = em.createNamedQuery("filtrado2");
+			@SuppressWarnings("unchecked")
+			List<Movimiento> list = q.getResultList();
+			return list;
+		} catch (Exception e) {
+			System.out.println("Algo ha fallado");
+			return null;
+		}
+	}
+	
+	public List<Movimiento> listaLike3(){
+		try {
+			Query q = em.createNamedQuery("filtrado3");
+			@SuppressWarnings("unchecked")
+			List<Movimiento> list = q.getResultList();
+			return list;
+		} catch (Exception e) {
+			System.out.println("Algo ha fallado");
+			return null;
+		}
+	}
+	
 
 	public Movimiento findvalor(Object valor) {
 		try {

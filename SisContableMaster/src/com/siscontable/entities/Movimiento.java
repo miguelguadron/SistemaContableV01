@@ -10,11 +10,14 @@ import java.util.Date;
  * The persistent class for the movimiento database table.
  * 
  */
+
 @Entity
 @NamedQueries({
 @NamedQuery(name="Movimiento.findAll", query="SELECT m FROM Movimiento m"),
 @NamedQuery(name = "Movimiento1", query="SELECT m FROM Movimiento m where m.codPlanilla = ?1"),
-@NamedQuery(name = "filtrado1", query="SELECT m FROM Movimiento m where m.codPlanilla like 'oe%' ")
+@NamedQuery(name = "filtrado1", query="SELECT m FROM Movimiento m where m.codPlanilla like 'oe%' "),
+@NamedQuery(name = "filtrado2", query="SELECT m FROM Movimiento m where m.codPlanilla like 'rb%' "),
+@NamedQuery(name = "filtrado3", query="SELECT m FROM Movimiento m where m.codPlanilla like 'bo%' ")
 })
 public class Movimiento implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -29,7 +32,9 @@ public class Movimiento implements Serializable {
 	private String atributo7;
 	private String atributo8;
 	private String atributo9;
+	private byte autorizar;
 	private String codPlanilla;
+	private int estadoMovimiento;
 	private Date fechaCreacion;
 	private String nombreMovimiento;
 	private String observaciones;
@@ -145,6 +150,15 @@ public class Movimiento implements Serializable {
 	}
 
 
+	public byte getAutorizar() {
+		return this.autorizar;
+	}
+
+	public void setAutorizar(byte autorizar) {
+		this.autorizar = autorizar;
+	}
+
+
 	@Column(name="cod_planilla")
 	public String getCodPlanilla() {
 		return this.codPlanilla;
@@ -152,6 +166,16 @@ public class Movimiento implements Serializable {
 
 	public void setCodPlanilla(String codPlanilla) {
 		this.codPlanilla = codPlanilla;
+	}
+
+
+	@Column(name="estado_movimiento")
+	public int getEstadoMovimiento() {
+		return this.estadoMovimiento;
+	}
+
+	public void setEstadoMovimiento(int estadoMovimiento) {
+		this.estadoMovimiento = estadoMovimiento;
 	}
 
 

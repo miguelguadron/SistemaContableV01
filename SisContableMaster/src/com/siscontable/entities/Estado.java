@@ -164,8 +164,8 @@ public class Estado implements Serializable {
 		return this.pai;
 	}
 
-	public void setPais(Pais pai) {
-		this.pai = pai;
+	public void setPais(Pais pais) {
+		this.pai = pais;
 	}
 
 }

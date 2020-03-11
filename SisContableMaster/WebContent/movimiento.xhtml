@@ -1,44 +1,131 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:h="http://java.sun.com/jsf/html"
-	  xmlns:ui="http://java.sun.com/jsf/facelets"
-	  xmlns:p="http://primefaces.org/ui"
-	  xmlns:f="http://java.sun.com/jsf/core"
->
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Movimientos</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Movimientos</title>
 </h:head>
-<h:form >
-	<p:menubar>
-		<p:menuitem value="Obra externa" url="movimiento.xhtml" >
-		</p:menuitem>
-						<p:menuitem value="Retenciones Bancarias" url="movimiento2.xhtml" >
-		</p:menuitem>
-	</p:menubar>
-</h:form>
+<ui:include src="menu.xhtml" />
 <h:body>
 	<p:growl id="msj" />
-	<h:form id="datos">
-	<p:dataTable value="#{movimientoController.listaMovimiento}" var="c" rows="5" paginator="true">
-	<p:column headerText="idMovimiento">
-	<h:outputText value="#{c.idMovimiento}" />
-	</p:column>
-		<p:column headerText="codPlanilla">
-	<h:outputText value="#{c.codPlanilla}" />
-	</p:column>
-		<p:column headerText="NombreMovimineto">
-	<h:outputText value="#{c.nombreMovimiento}" />
-	</p:column>
-		<p:column headerText="Observaciones">
-	<h:outputText value="#{c.observaciones}" />
-	</p:column>
-		<p:column headerText="total">
-	<h:outputText value="#{c.total}" />
-	</p:column>
+	         <br></br>
+		    <p:toolbar>
+        <f:facet name="left">
+            <p:commandButton  value="Nuevo" icon="pi pi-file" oncomplete="PF('modal').show()" />
+ 
+            <p:commandButton  value="Abrir" icon="pi pi-folder-open" />
+ 
+            <span class="ui-separator">
+                <span class="ui-icon pi pi-ellipsis-v" />
+            </span>
+ 
+            <p:commandButton type="button" title="Save" icon="pi pi-save" />
+            <p:commandButton type="button" title="Delete" icon="pi pi-trash" />
+            <p:commandButton type="button" title="Print" icon="pi pi-print" />
+        </f:facet>
+         </p:toolbar> 
+         
+	<h:form id="datos">   
+		<p:dataTable value="#{movimientoController.listaMovimiento}" var="c"
+			rows="5" paginator="true">
+			<p:column headerText="idMovimiento">
+				<h:outputText value="#{c.idMovimiento}" />
+			</p:column>
+			<p:column headerText="codPlanilla">
+				<h:outputText value="#{c.codPlanilla}" />
+			</p:column>
+			<p:column headerText="NombreMovimineto">
+				<h:outputText value="#{c.nombreMovimiento}" />
+			</p:column>
+			<p:column headerText="Observaciones">
+				<h:outputText value="#{c.observaciones}" />
+			</p:column>
+			<p:column headerText="total">
+				<h:outputText value="#{c.total}" />
+			</p:column>
 
-	</p:dataTable>
+		</p:dataTable>
 	</h:form>
+	
+		<h:form id="emergente">
+	<p:dialog widgetVar="modal" showEffect="clip" draggable="true"  dynamic="true" >
+	<p:panelGrid columns="4" styleClass="ui-noborder">
+		<p:column>
+	<h:outputText value="Fecha"/>
+	<p:inputText  value="#{movimientoController.m.fechaCreacion}"/>
+	</p:column>
+	<p:column>
+	<h:outputText value="No Gasto" />
+	<p:inputText value="#{movimientoController.m.codPlanilla}" />
+	</p:column>
+	<p:column>
+	<h:outputText value="Comprador" />
+	<p:inputText value="#{movimientoController.m.atributo1}" />
+	</p:column>
+	<p:column>
+	<h:outputText value="Autoriza" />
+	<p:selectBooleanCheckbox value="#{selectBooleanView.value1}"/>
+	</p:column>
+	<p:column>
+	<h:outputText value="idDoc" />
+	<p:inputText value="#{movimientoController.m.idMovimiento}" />
+	</p:column>
+	<p:column>
+	<h:outputText value="R.iva" />
+	<p:selectBooleanCheckbox value="#{selectBooleanView.value1}"/>
+	</p:column>
+	<p:column></p:column>
+	<p:column>
+        <p:outputLabel for="estado" value="Estado:" />
+        <p:selectOneRadio id="estado" value="#{movimientoController.m.estadoMovimiento}" unselectable="true">
+            <f:selectItem itemLabel="Abierto" itemValue="0" />
+            <f:selectItem itemLabel="Finalizado" itemValue="1" />
+        </p:selectOneRadio>
+	</p:column>
+		<p:column>
+	<p:selectOneMenu value="#{movimientoController.iddepa}">
+	<f:selectItem itemLabel="Departamento" itemValue="0" noSelectionOption="true"  />
+	<f:selectItems value="#{movimientoController.listaDepartamento}" var="c" 
+	itemLabel="#{c.nombre}" itemValue="#{c.idDepartamento}" />
+	</p:selectOneMenu>
+	</p:column>
+	<p:column></p:column>
+	<p:column></p:column>
+	<p:column></p:column>
+	<p:column>
+	<h:outputText value="Observaciones" />
+	<p:inputText value="#{movimientoController.m.observaciones}" />
+	</p:column>
+	<p:column></p:column>
+	<p:column></p:column>
+	<p:column></p:column>
+	</p:panelGrid>
+	<p:panel widgetVar="Movimiento"  header="Movimientos">
+	<p:dataTable value="#{movimientoController.listaMovimiento}" var="c"
+			rows="5" paginator="true">
+			<p:column headerText="idMovimiento">
+				<h:outputText value="#{c.idMovimiento}" />
+			</p:column>
+			<p:column headerText="codPlanilla">
+				<h:outputText value="#{c.codPlanilla}" />
+			</p:column>
+			<p:column headerText="NombreMovimineto">
+				<h:outputText value="#{c.nombreMovimiento}" />
+			</p:column>
+			<p:column headerText="Observaciones">
+				<h:outputText value="#{c.observaciones}" />
+			</p:column>
+			<p:column headerText="total">
+				<h:outputText value="#{c.total}" />
+			</p:column>
+		</p:dataTable>
+		</p:panel>
+	</p:dialog>
+		</h:form>
+	
 </h:body>
 </html>

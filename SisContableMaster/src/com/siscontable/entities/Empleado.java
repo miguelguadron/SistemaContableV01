@@ -27,11 +27,13 @@ public class Empleado implements Serializable {
 	private String atributo8;
 	private String atributo9;
 	private String dui;
+	private byte estado;
 	private Date fechaFin;
 	private Date fechaInicio;
 	private Date fechaNacimiento;
 	private Date fechaRegistro;
 	private String isss;
+	private String nit;
 	private String nombres;
 	private String nup;
 	private String sexo;
@@ -166,6 +168,15 @@ public class Empleado implements Serializable {
 	}
 
 
+	public byte getEstado() {
+		return this.estado;
+	}
+
+	public void setEstado(byte estado) {
+		this.estado = estado;
+	}
+
+
 	@Temporal(TemporalType.DATE)
 	@Column(name="fecha_fin")
 	public Date getFechaFin() {
@@ -216,6 +227,15 @@ public class Empleado implements Serializable {
 
 	public void setIsss(String isss) {
 		this.isss = isss;
+	}
+
+
+	public String getNit() {
+		return this.nit;
+	}
+
+	public void setNit(String nit) {
+		this.nit = nit;
 	}
 
 
