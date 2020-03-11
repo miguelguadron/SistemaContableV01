@@ -41,7 +41,7 @@
 		</p:selectOneMenu>
 		
 		<p:outputLabel value="Numero Tributario" />
-		<p:inputText  value="#{empresaController.empresa.numeroTributario}" />
+		<p:inputMask mask="9999-99999999-999-9" value="#{empresaController.empresa.numeroTributario}" />
 		
 		<p:outputLabel value="Correo Electronco" />
 		<p:inputText  value="#{empresaController.empresa.correo}" />

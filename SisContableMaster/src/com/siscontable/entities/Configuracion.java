@@ -25,8 +25,8 @@ public class Configuracion implements Serializable {
 	private String atributo8;
 	private String atributo9;
 	private Date fechaCreacion;
-	private Empresa empresa;
 	private DeducionesLegale deducionesLegale;
+	private Empresa empresa;
 
 	public Configuracion() {
 	}
@@ -145,18 +145,6 @@ public class Configuracion implements Serializable {
 	}
 
 
-	//bi-directional many-to-one association to Empresa
-	@ManyToOne
-	@JoinColumn(name="id_empresa")
-	public Empresa getEmpresa() {
-		return this.empresa;
-	}
-
-	public void setEmpresa(Empresa empresa) {
-		this.empresa = empresa;
-	}
-
-
 	//bi-directional many-to-one association to DeducionesLegale
 	@ManyToOne
 	@JoinColumn(name="id_impuesto")
@@ -166,6 +154,18 @@ public class Configuracion implements Serializable {
 
 	public void setDeducionesLegale(DeducionesLegale deducionesLegale) {
 		this.deducionesLegale = deducionesLegale;
+	}
+
+
+	//bi-directional many-to-one association to Empresa
+	@ManyToOne
+	@JoinColumn(name="id_empresa")
+	public Empresa getEmpresa() {
+		return this.empresa;
+	}
+
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
 	}
 
 }

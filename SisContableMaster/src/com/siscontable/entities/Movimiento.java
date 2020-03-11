@@ -25,6 +25,7 @@ public class Movimiento implements Serializable {
 	private String atributo7;
 	private String atributo8;
 	private String atributo9;
+	private byte autorizar;
 	private String codPlanilla;
 	private Date fechaCreacion;
 	private String nombreMovimiento;
@@ -138,6 +139,15 @@ public class Movimiento implements Serializable {
 
 	public void setAtributo9(String atributo9) {
 		this.atributo9 = atributo9;
+	}
+
+
+	public byte getAutorizar() {
+		return this.autorizar;
+	}
+
+	public void setAutorizar(byte autorizar) {
+		this.autorizar = autorizar;
 	}
 
 

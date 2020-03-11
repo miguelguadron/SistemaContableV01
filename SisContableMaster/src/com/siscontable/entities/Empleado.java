@@ -32,6 +32,7 @@ public class Empleado implements Serializable {
 	private Date fechaNacimiento;
 	private Date fechaRegistro;
 	private String isss;
+	private String nit;
 	private String nombres;
 	private String nup;
 	private String sexo;
@@ -216,6 +217,15 @@ public class Empleado implements Serializable {
 
 	public void setIsss(String isss) {
 		this.isss = isss;
+	}
+
+
+	public String getNit() {
+		return this.nit;
+	}
+
+	public void setNit(String nit) {
+		this.nit = nit;
 	}
 
 

@@ -12,11 +12,11 @@
 		<class>com.siscontable.entities.Estado</class>
 		<class>com.siscontable.entities.Familiar</class>
 		<class>com.siscontable.entities.Movimiento</class>
+		<class>com.siscontable.entities.Pais</class>
 		<class>com.siscontable.entities.Proveedor</class>
 		<class>com.siscontable.entities.Proyecto</class>
 		<class>com.siscontable.entities.SueldoFijo</class>
 		<class>com.siscontable.entities.Usuario</class>
-		<class>com.siscontable.entities.Pais</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sis_contabilidad1?useSSL=false"/>

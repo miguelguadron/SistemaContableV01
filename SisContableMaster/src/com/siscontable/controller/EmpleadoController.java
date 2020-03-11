@@ -35,7 +35,7 @@ public class EmpleadoController {
 		idcargo=0;
 		iddepart=0;
 		iduser=0;
-		
+		mostrar();
 	}
 	
 	public void mostrar() {
@@ -62,6 +62,7 @@ public class EmpleadoController {
 			
 			empleadoDao.guardar(empleado);
 			mensaje("Exito");
+
 		} catch (Exception e) {
 			mensaje("Algo a fallado");
 		}
