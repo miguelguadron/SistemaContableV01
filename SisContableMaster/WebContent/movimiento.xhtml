@@ -15,7 +15,7 @@
 	         <br></br>
 		    <p:toolbar>
         <f:facet name="left">
-            <p:commandButton  value="Nuevo" icon="pi pi-file" oncomplete="PF('modal').show()" />
+            <p:commandButton  value="Nuevo" icon="pi pi-file"  oncomplete="PF('modal').show()" />
  
             <p:commandButton  value="Abrir" icon="pi pi-folder-open" />
  
@@ -31,40 +31,72 @@
          
 	<h:form id="datos">   
 		<p:dataTable value="#{movimientoController.listaMovimiento}" var="c"
-			rows="5" paginator="true">
-			<p:column headerText="idMovimiento">
-				<h:outputText value="#{c.idMovimiento}" />
+			rows="5" paginator="true" >
+
+			<p:column headerText="Fecha">
+				<h:outputText value="#{c.fechaCreacion}" >
+				<f:convertDateTime pattern="yyyy-MM-dd" />
+				</h:outputText>
 			</p:column>
 			<p:column headerText="codPlanilla">
 				<h:outputText value="#{c.codPlanilla}" />
 			</p:column>
-			<p:column headerText="NombreMovimineto">
-				<h:outputText value="#{c.nombreMovimiento}" />
+			<p:column headerText="Credito Fiscal">
+				<h:outputText value="#{c.atributo1}" />
 			</p:column>
-			<p:column headerText="Observaciones">
+			<p:column headerText="Nombre">
+				<h:outputText value="#{c.cuentasContable.nombre}" />
+			</p:column>
+			<p:column headerText="Depto">
+				<h:outputText value="#{c.departamento.nombre}" />
+			</p:column>
+			<p:column headerText="Proyecto">
+				<h:outputText value="#{c.proyecto.nombre}" />
+			</p:column>
+			<p:column headerText="Oservaciones">
 				<h:outputText value="#{c.observaciones}" />
 			</p:column>
 			<p:column headerText="total">
 				<h:outputText value="#{c.total}" />
 			</p:column>
-
+			<p:column headerText="Cargar">
+			<center>
+            <p:commandButton icon="pi pi-search" action="#{movimientoController.cargarModal(c.idMovimiento)}"
+             update=":datos :emergente"  oncomplete="PF('modal').show()" />
+             </center>
+            </p:column>
 		</p:dataTable>
 	</h:form>
 	
 		<h:form id="emergente">
-	<p:dialog widgetVar="modal" showEffect="clip" draggable="true"  dynamic="true" >
+	<p:dialog widgetVar="modal" modal="true" header="Emergente" showEffect="clip" draggable="true"  dynamic="true" >
+	<p:ajax event="close" listener="#{movimientoController.limpiar()}" update="emergente" />
+	<center>
+	<p:panelGrid columns="3" styleClass="ui-noborder" style="margin-left:668px" >
+	<p:column>
+	<p:commandButton value="Guardar" action="#{movimientoController.insertar()}"
+	 update="emergente :msj :datos" oncomplete="PF('modal').hide()" />
+	</p:column>
+	<p:column>
+	<p:commandButton value="Editar"  />
+	</p:column>
+	<p:column>
+	<p:commandButton value="Cancelar" oncomplete="PF('modal').hide()" />
+	</p:column>
+	</p:panelGrid>
+	</center>
 	<p:panelGrid columns="4" styleClass="ui-noborder">
-		<p:column>
+	<p:column>
 	<h:outputText value="Fecha"/>
-	<p:inputText  value="#{movimientoController.m.fechaCreacion}"/>
+	<p:clock pattern="yyyy-MM-dd" />
 	</p:column>
 	<p:column>
 	<h:outputText value="No Gasto" />
-	<p:inputText value="#{movimientoController.m.codPlanilla}" />
+	<p:inputText readonly="true" value="#{movimientoController.m.codPlanilla}" />
 	</p:column>
 	<p:column>
 	<h:outputText value="Comprador" />
-	<p:inputText value="#{movimientoController.m.atributo1}" />
+	<p:inputText readonly="true" value="#{movimientoController.m.atributo1}" />
 	</p:column>
 	<p:column>
 	<h:outputText value="Autoriza" />
@@ -72,7 +104,7 @@
 	</p:column>
 	<p:column>
 	<h:outputText value="idDoc" />
-	<p:inputText value="#{movimientoController.m.idMovimiento}" />
+	<p:inputText readonly="true" value="#{movimientoController.m.idMovimiento}" />
 	</p:column>
 	<p:column>
 	<h:outputText value="R.iva" />
@@ -99,6 +131,9 @@
 	<p:column>
 	<h:outputText value="Observaciones" />
 	<p:inputText value="#{movimientoController.m.observaciones}" />
+	</p:column>
+	<p:column>
+	<p:commandButton value="Guardar" action="#{movimientoController.probando()}"/>
 	</p:column>
 	<p:column></p:column>
 	<p:column></p:column>

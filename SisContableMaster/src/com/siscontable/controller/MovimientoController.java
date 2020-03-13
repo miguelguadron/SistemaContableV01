@@ -29,7 +29,7 @@ public class MovimientoController {
 	private List<Departamento> listaDepartamento;
 	private int iddepa;
 	public Object valor;
-	
+	public int valorDepartamento=0;
 	
 	
 	public int getIddepa() {
@@ -82,6 +82,18 @@ public class MovimientoController {
 		this.listaMovimiento = listaMovimiento;
 	}
 	
+	
+	public void cargarModal(int idMovimiento) {
+//		this.m = m;
+//		valorDepartamento = m.getDepartamento().getIdDepartamento();
+//		System.out.println("valor cargado"+ m.getDepartamento().getIdDepartamento());
+		mf.findById(idMovimiento);
+		System.out.println(m.getCodPlanilla());
+		System.out.println(idMovimiento);
+		
+	}
+	
+	
 	@PostConstruct
 	public void init() {
 		m = new Movimiento();
@@ -93,8 +105,10 @@ public class MovimientoController {
 		mostrar3();
 		mostrarDep();
 		mostrarAll();
-		agregado();
-		iddepa = 0;
+		//crear();
+		//agregado();
+		iddepa = valorDepartamento;
+		
 	}
 	
 	public void mensaje(String respuesta) {
@@ -117,60 +131,84 @@ public class MovimientoController {
 	return this.listaMovimiento3 = mf.listaLike3();
 	}
 	
-	public void crear() {
+	
+	public void Insertar() {
+		System.out.println("hola");
 		String variable="";
-		if(mf.listaLike1().size() == 0 || mf.listaLike1().isEmpty()) {
+		try {
+		if(mostrar().size() == 0 || mostrar().isEmpty()) {
 			variable="OE001";
+			try {
+				System.out.println("hola2");
+				Departamento dep = new Departamento();
+				dep.setIdDepartamento(iddepa);
+				m.setCodPlanilla(variable);
+				m.setDepartamento(dep);
+				mf.guardar(m);
+				mensaje("Se creo exitosamente");
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+				mensaje("Ha ocurrido un error");
+			}
 			System.out.println("persiste:"+variable);
-		} else {
-		int cont = (mf.listaLike1().size())+(1);
+		}  else if (mostrar().size() != 0){
+			
+		int cont = (mostrar().size())+(1);
 		 variable="OE00"+cont;
+		 try {
+				Departamento dep = new Departamento();
+				dep.setIdDepartamento(iddepa);
+				m.setCodPlanilla(variable);
+				m.setDepartamento(dep);
+				mf.guardar(m);
+				mensaje("Se creo exitosamente");
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+				mensaje("Ha ocurrido un error");
+			}
 		 System.out.println("persiste:"+variable);
-		} if(mf.listaLike2().size() == 0 || mf.listaLike2().isEmpty()) {
-			variable="RB001";
-			System.out.println("Persiste:"+variable);
-		} else {
-			int cont =(mf.listaLike2().size())+(1);
-			variable="RB00"+cont;
-			System.out.println("Persiste:"+variable);
-		} if(mf.listaLike3().size() == 0 || mf.listaLike3().isEmpty()) {
-			variable="BO001";
-			System.out.println("persiste:"+variable);
-		} else {
-			int cont =(mf.listaLike3().size())+(1);
-			variable="B00"+cont;
-			System.out.println("Persiste:"+variable);
 		}
-		
-		Departamento dep = new Departamento();
-		dep.setIdDepartamento(iddepa);
-		m.setDepartamento(dep);
-		
+		} catch(Exception e) {
+			System.out.println("Ha fallado pero si entro");
+		}
+		/*
+		try {
+			Departamento dep = new Departamento();
+			dep.setIdDepartamento(iddepa);
+			m.setCodPlanilla(variable);
+			m.setDepartamento(dep);
+			mf.guardar(m);
+			mensaje("Se creo exitosamente");
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			mensaje("Ha ocurrido un error");
+		}
+		*/
 	}
 	
 	public String agregado() {
 		String variable="";
 		if(mf.listaLike1().size() == 0 || mf.listaLike1().isEmpty()) {
 			variable="OE001";
-			System.out.println("persiste:"+variable);
+			//System.out.println("persiste:"+variable);
 		} else {
 		int cont = (mf.listaLike1().size())+(1);
 		 variable="OE00"+cont;
-		 System.out.println("persiste:"+variable);
+		 //System.out.println("persiste:"+variable);
 		} if(mf.listaLike2().size() == 0 || mf.listaLike2().isEmpty()) {
 			variable="RB001";
-			System.out.println("Persiste:"+variable);
+			//System.out.println("Persiste:"+variable);
 		} else {
 			int cont =(mf.listaLike2().size())+(1);
 			variable="RB00"+cont;
-			System.out.println("Persiste:"+variable);
+			//System.out.println("Persiste:"+variable);
 		} if(mf.listaLike3().size() == 0 || mf.listaLike3().isEmpty()) {
 			variable="BO001";
-			System.out.println("persiste:"+variable);
+			//System.out.println("persiste:"+variable);
 		} else {
 			int cont =(mf.listaLike3().size())+(1);
 			variable="B00"+cont;
-			System.out.println("Persiste:"+variable);
+			//System.out.println("Persiste:"+variable);
 		}
 		 return variable;
 		 
@@ -185,8 +223,26 @@ public class MovimientoController {
 		this.listaAll = new ArrayList<Movimiento>();
 		return listaAll = mf.mostrar();
 	}
+
 	
+	public void limpiar() {
+		iddepa = 0;
+		init();
+	}
 	
-	
+	public void probando() {
+		System.out.println("Hola estoy aqui");
+		try {
+			mf.guardar(m);
+			m = new Movimiento();
+			mf = new MovimientoFacade();
+			mostrar();
+			
+			mensaje("Se creo exitoso");
+		} catch (Exception e) {
+			mensaje("No se ha podido crear"+e.getMessage());
+		}
+	}
+
 	
 }

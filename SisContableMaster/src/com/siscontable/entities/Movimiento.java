@@ -32,7 +32,7 @@ public class Movimiento implements Serializable {
 	private String atributo7;
 	private String atributo8;
 	private String atributo9;
-	private byte autorizar;
+	private Boolean autorizar;
 	private String codPlanilla;
 	private int estadoMovimiento;
 	private Date fechaCreacion;
@@ -45,6 +45,10 @@ public class Movimiento implements Serializable {
 	private Proyecto proyecto;
 
 	public Movimiento() {
+		cuentasContable = new CuentasContable();
+		departamento = new Departamento();
+		proveedor = new Proveedor();
+		proyecto = new Proyecto();
 	}
 
 
@@ -150,11 +154,11 @@ public class Movimiento implements Serializable {
 	}
 
 
-	public byte getAutorizar() {
+	public Boolean getAutorizar() {
 		return this.autorizar;
 	}
 
-	public void setAutorizar(byte autorizar) {
+	public void setAutorizar(Boolean autorizar) {
 		this.autorizar = autorizar;
 	}
 

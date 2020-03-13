@@ -27,7 +27,7 @@ public abstract class AbstractFacade<T> {
 				em.getTransaction().rollback();
 			}
 		} finally {
-			if(em.getTransaction() == null && em.isOpen()) {
+			if(em != null && em.isOpen()) {
 				em.close();
 			}
 		}
@@ -46,7 +46,7 @@ public abstract class AbstractFacade<T> {
 				em.getTransaction().rollback();
 			}
 		} finally {
-			if(em.getTransaction() == null && em.isOpen()) {
+			if(em != null && em.isOpen()) {
 				em.close();
 			}
 		}
@@ -65,7 +65,7 @@ public abstract class AbstractFacade<T> {
 				em.getTransaction().rollback();
 			}
 		} finally {
-			if(em.getTransaction() == null && em.isOpen()) {
+			if(em != null && em.isOpen()) {
 				em.close();
 			}
 		}
