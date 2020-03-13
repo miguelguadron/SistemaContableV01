@@ -9,6 +9,135 @@
 	<title></title>
 </h:head>
 <h:body>
+	<ui:include src="menu.xhtml"></ui:include>
+	<p:commandButton value="Agregar impuestos" onclick="PF('imp').show();"></p:commandButton>
+	<p:panel header="Impuestos">
+		<h:form id="frmdt">
+			<p:dataTable id="datos" value="#{impuestoController.listaimpuesto}"
+				var="imp">
+				<p:column headerText="Nombre">
+					<p:outputLabel value="#{imp.nombreImpuesto1}" />
+				</p:column>
+		
+				<p:column headerText="Porcentaje">
+					<p:outputLabel value="#{imp.porcentaje1}" />
+				</p:column>
+				
+				<p:column headerText="Nombre">
+					<p:outputLabel value="#{imp.nombreImpuesto2}" />
+				</p:column>
+		
+				<p:column headerText="Porcentaje">
+					<p:outputLabel value="#{imp.porcentaje2}" />
+				</p:column>
+				
+				<p:column headerText="Nombre">
+					<p:outputLabel value="#{imp.nombreImpuesto3}" />
+				</p:column>
+		
+				<p:column headerText="Porcentaje">
+					<p:outputLabel value="#{imp.porcentaje3}" />
+				</p:column>
+				
+				<p:column headerText="Nombre">
+					<p:outputLabel value="#{imp.nombreImpuesto4}" />
+				</p:column>
+		
+				<p:column headerText="Porcentaje">
+					<p:outputLabel value="#{imp.porcentaje4}" />
+				</p:column>
+				
+				<p:column headerText="Nombre">
+					<p:outputLabel value="#{imp.nombreImpuesto5}" />
+				</p:column>
+		
+				<p:column headerText="Porcentaje">
+					<p:outputLabel value="#{imp.porcentaje5}" />
+				</p:column>
+				
+				<p:column headerText="Nombre">
+					<p:outputLabel value="#{imp.nombreImpuesto6}" />
+				</p:column>
+		
+				<p:column headerText="Porcentaje">
+					<p:outputLabel value="#{imp.porcentaje6}" />
+				</p:column>
+				
+				<p:column headerText="Ingreso o Egreso">
+					<p:outputLabel value="#{imp.sumaResta}" />
+				</p:column>
+				
+				<p:column headerText="Pais">
+					<p:outputLabel value="#{imp.estado.pais.nombrePais}" />
+				</p:column>
+				
+			</p:dataTable>
+		</h:form>
+	</p:panel>
 	
+	<p:dialog widgetVar="imp" modal="true" resizable="true" responsive="true" header="Impuestos">
+		<p:growl id="gr" />
+		<h:form>
+				<p:panelGrid columns="6">
+					<p:column>
+					<p:outputLabel value="Nombre del documento:" style="margin-right:10px;"/>
+					<p:inputText value="#{impuestoController.impuesto.nombreDocumento}" />
+					</p:column>
+					
+					<p:column>
+					<p:outputLabel value="Ingresos o Egresos" />
+					<p:selectOneRadio value="#{impuestoController.impuesto.sumaResta}">
+							<f:selectItem itemLabel="Ingreso" itemValue="2" />
+							<f:selectItem itemLabel="Egreso" itemValue="1" />
+					</p:selectOneRadio>			
+					</p:column>
+					
+					<p:column>
+					<p:outputLabel value="Estado:" style="margin-right:10px;"/>
+					<p:selectOneMenu value="#{impuestoController.idEst}">
+						<f:selectItems value="#{impuestoController.selectEstado()}" var="est" itemLabel="#{est.nombre}" itemValue="#{est.idEstado}"></f:selectItems>
+					</p:selectOneMenu>
+					</p:column>
+				</p:panelGrid>
+				
+				<p:panelGrid columns="4">	
+					<p:outputLabel value="Nombre del impuesto:" />
+					<p:inputText value="#{impuestoController.impuesto.nombreImpuesto1}" />
+					
+					<p:outputLabel value="Porcentaje:" />
+					<p:inputText value="#{impuestoController.impuesto.porcentaje1}" />
+					
+					<p:outputLabel value="Nombre del impuesto:" />
+					<p:inputText value="#{impuestoController.impuesto.nombreImpuesto2}" />
+					
+					<p:outputLabel value="Porcentaje:" />
+					<p:inputText value="#{impuestoController.impuesto.porcentaje2}" />
+					
+					<p:outputLabel value="Nombre del impuesto:" />
+					<p:inputText value="#{impuestoController.impuesto.nombreImpuesto3}" />
+					
+					<p:outputLabel value="Porcentaje:" />
+					<p:inputText value="#{impuestoController.impuesto.porcentaje3}" />
+					
+					<p:outputLabel value="Nombre del impuesto:" />
+					<p:inputText value="#{impuestoController.impuesto.nombreImpuesto4}" />
+					
+					<p:outputLabel value="Porcentaje:" />
+					<p:inputText value="#{impuestoController.impuesto.porcentaje4}" />
+					
+					<p:outputLabel value="Nombre del impuesto:" />
+					<p:inputText value="#{impuestoController.impuesto.nombreImpuesto5}" />
+					
+					<p:outputLabel value="Porcentaje:" />
+					<p:inputText value="#{impuestoController.impuesto.porcentaje5}" />
+					
+					<p:outputLabel value="Nombre del impuesto:" />
+					<p:inputText value="#{impuestoController.impuesto.nombreImpuesto6}" />
+					
+					<p:outputLabel value="Porcentaje:" />
+					<p:inputText value="#{impuestoController.impuesto.porcentaje6}" />
+				</p:panelGrid>
+		</h:form>
+	</p:dialog>
 </h:body>
 </html>

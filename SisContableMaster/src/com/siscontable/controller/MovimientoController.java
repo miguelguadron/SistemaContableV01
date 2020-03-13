@@ -17,40 +17,4 @@ import com.siscontable.entities.Movimiento;
 @RequestScoped
 public class MovimientoController {
 	
-	private Movimiento m;
-	private MovimientoFacade mf;
-	private List<Movimiento> listaMovimiento;
-	
-	public Movimiento getM() {
-		return m;
-	}
-	public void setM(Movimiento m) {
-		this.m = m;
-	}
-	public List<Movimiento> getListaMovimiento() {
-		return listaMovimiento;
-	}
-	public void setListaMovimiento(List<Movimiento> listaMovimiento) {
-		this.listaMovimiento = listaMovimiento;
-	}
-	
-	@PostConstruct
-	public void init() {
-		m = new Movimiento();
-		mf = new MovimientoFacade();
-		mostrar();
-	}
-	
-	public void mensaje(String respuesta) {
-		FacesMessage mensaje = new FacesMessage(respuesta);
-		FacesContext.getCurrentInstance().addMessage(null, mensaje);
-	}
-	
-	public List<Movimiento> mostrar(){
-		this.listaMovimiento = new ArrayList<Movimiento>();
-		 return this.listaMovimiento = mf.mostrar();
-	}
-	
-	
-	
 }

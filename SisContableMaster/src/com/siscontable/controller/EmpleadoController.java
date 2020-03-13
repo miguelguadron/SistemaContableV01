@@ -10,7 +10,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
+import com.siscontable.dao.CargoDao;
+import com.siscontable.dao.DepartamentoDao;
 import com.siscontable.dao.EmpleadoDao;
+import com.siscontable.dao.UsuarioDao;
 import com.siscontable.entities.Cargo;
 import com.siscontable.entities.Departamento;
 import com.siscontable.entities.Empleado;
@@ -23,6 +26,19 @@ public class EmpleadoController {
 	private Empleado empleado;
 	private EmpleadoDao empleadoDao;
 	public List<Empleado> ListEmpleado;
+	
+	private Cargo cargo;
+	private CargoDao cargoFacade;
+	public List<Cargo> listacargo;
+	
+	private Departamento departamento;
+	private DepartamentoDao depaFacade;
+	public List<Departamento> listadepa;
+	
+	private Usuario user; 
+	private UsuarioDao userFacade;
+	public List<Usuario> listauser;
+	
 	int idcargo;
 	int iddepart;
 	int iduser;
@@ -32,10 +48,22 @@ public class EmpleadoController {
 		empleado = new Empleado();
 		empleadoDao = new EmpleadoDao();
 		
+		cargo = new Cargo();
+		cargoFacade = new CargoDao();
+		
+		departamento = new Departamento();
+		depaFacade = new DepartamentoDao();
+		
+		user = new Usuario();
+		userFacade = new UsuarioDao();
+		
 		idcargo=0;
 		iddepart=0;
 		iduser=0;
 		mostrar();
+		selectCargo();
+		selectDepa();
+		selectUser();
 	}
 	
 	public void mostrar() {
@@ -62,7 +90,12 @@ public class EmpleadoController {
 			
 			empleadoDao.guardar(empleado);
 			mensaje("Exito");
-
+			empleado = new Empleado();
+			idcargo =0 ;
+			iddepart =0 ;
+			iduser =0 ;
+			
+			mostrar();
 		} catch (Exception e) {
 			mensaje("Algo a fallado");
 		}
@@ -72,6 +105,21 @@ public class EmpleadoController {
 	public void mensaje(String respuesta) {
 		FacesMessage mensaje = new  FacesMessage(respuesta);
 		FacesContext.getCurrentInstance().addMessage(null, mensaje);
+	}
+	
+	public List<Cargo> selectCargo(){
+		this.listacargo = new ArrayList<Cargo>();
+		return this.listacargo = cargoFacade.mostrar();
+	}
+	
+	public List<Departamento> selectDepa(){
+		this.listadepa = new ArrayList<Departamento>();
+		return this.listadepa = depaFacade.mostrar();
+	}
+	
+	public List<Usuario> selectUser(){
+		this.listauser = new ArrayList<Usuario>();
+		return this.listauser = userFacade.mostrar();
 	}
 	
 	public Empleado getEmpleado() {

@@ -24,6 +24,16 @@ public class EmpresaController {
 	private EmpresaDao empDao;
 	public List<Empresa> ListEmp;
 	
+	
+	private Pais pais;
+	private PaisDao paisFacade;
+	public List<Pais> listaPais;
+	
+	private Estado est;
+	private EstadoDao estfacade;
+	public List<Estado> listaEstado;
+	
+	
 	int idpaiss;
 	int idesta;
 	
@@ -33,10 +43,19 @@ public class EmpresaController {
 		empresa = new Empresa();
 		empDao = new EmpresaDao();
 		
-		mostrar();
+		est = new Estado();
+		estfacade = new EstadoDao();
+		
+		pais = new Pais();
+		paisFacade = new PaisDao();
 
 		idpaiss=0;
 		idesta=0;
+		
+		mostrar();
+		selectPais();
+		selectEstado();
+		
 	}
 	
 	public void mostrar() {
@@ -58,6 +77,11 @@ public class EmpresaController {
 			
 			empDao.guardar(empresa);
 			mensaje("Se creo la empresa correctamente");
+			
+			empresa = new Empresa();
+			idesta = 0;
+			idpaiss = 0;
+			
 		} catch (Exception e) {
 			mensaje("Algo a fallado");
 		}
@@ -85,14 +109,22 @@ public class EmpresaController {
 		empDao.findById(id);
 	}
 	
-	
-	
-	
-	
 	public void mensaje(String respuesta) {
 		FacesMessage mensaje = new  FacesMessage(respuesta);
 		FacesContext.getCurrentInstance().addMessage(null, mensaje);
 	}
+	
+	public List<Estado> selectEstado() {
+		this.listaEstado = new ArrayList<Estado>();
+		return this.listaEstado = estfacade.mostrar();
+		
+	}
+	
+	public List<Pais> selectPais(){
+		this.listaPais = new ArrayList<Pais>();
+		return this.listaPais = paisFacade.mostrar();
+	}
+	
 	
 	public String ira() {
 		return "login.xhtml";

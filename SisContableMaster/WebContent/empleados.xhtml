@@ -9,110 +9,144 @@
 	<title></title>
 </h:head>
 <h:body>
-	<h2>Empleados</h2>
+	<ui:include src="menu.xhtml"></ui:include>
 	<p:commandButton value="Agregar empleado" onclick="PF('emp').show();"></p:commandButton>
-
-	<p:dataTable id="datos" value="#{empleadoController.listEmpleado}" var="emp">
-		<p:column headerText="Nombres">
-			<p:outputLabel value="#{emp.nombres}" />
-		</p:column>
+	<p:panel header="Registro de empleados">
+		<h:form id="frmdt">
+			<p:dataTable id="datos" value="#{empleadoController.listEmpleado}"
+				var="emp">
+				<p:column headerText="Nombres">
+					<p:outputLabel value="#{emp.nombres}" />
+				</p:column>
 		
-		<p:column headerText="Apellidos">
-			<p:outputLabel value="#{emp.apellidos}" />
-		</p:column>
+				<p:column headerText="Apellidos">
+					<p:outputLabel value="#{emp.apellidos}" />
+				</p:column>
 		
-		<p:column headerText="Genero">
-			<p:outputLabel value="#{emp.sexo}" />
-		</p:column>
+				<p:column headerText="Genero">
+					<p:outputLabel value="#{emp.sexo}" />
+				</p:column>
 		
-		<p:column headerText="N° DUI">
-			<p:outputLabel value="#{emp.dui}" />
-		</p:column>
+				<p:column headerText="N° DUI">
+					<p:outputLabel value="#{emp.dui}" />
+				</p:column>
 		
-		<p:column headerText="N° NIT">
-			<p:outputLabel value="#{emp.nit}" />
-		</p:column>
+				<p:column headerText="N° NIT">
+					<p:outputLabel value="#{emp.nit}" />
+				</p:column>
 		
-		<p:column headerText="N° NUP">
-			<p:outputLabel value="#{emp.nup}" />
-		</p:column>
+				<p:column headerText="N° NUP">
+					<p:outputLabel value="#{emp.nup}" />
+				</p:column>
 		
-		<p:column headerText="N° ISSS">
-			<p:outputLabel value="#{emp.isss}" />
-		</p:column>
+				<p:column headerText="N° ISSS">
+					<p:outputLabel value="#{emp.isss}" />
+				</p:column>
 		
-		<p:column headerText="Salario Nominal">
-			<p:outputLabel value="#{emp.atributo1}" />
-		</p:column>
-	</p:dataTable>
-
-
+				<p:column headerText="Salario Nominal">
+					<p:outputLabel value="#{emp.atributo1}" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</p:panel>
+	
 	<p:dialog widgetVar="emp" modal="true" resizable="true"
 		responsive="true">
 		<p:growl id="gr" />
 		<h:form>
-						<p:panelGrid columns="4">
-							<p:outputLabel value="Nombre Completo" />
-							<p:inputText value="#{empleadoController.empleado.nombres}" />
-
-							<p:outputLabel value="Apellidos"></p:outputLabel>
-							<p:inputText value="#{empleadoController.empleado.apellidos}" />
-
-							<p:outputLabel value="sexo" />
-							<p:selectOneRadio value="#{empleadoController.empleado.sexo}">
-								<f:selectItem itemLabel="Masculino" itemValue="M" />
-								<f:selectItem itemLabel="Fenino" itemValue="F" />
-								<f:selectItem itemLabel="Otro genero" itemValue="O" />
-							</p:selectOneRadio>
-
-							<p:outputLabel value="fecha Nacimiento" />
-							<p:calendar value="#{empleadoController.empleado.fechaNacimiento}" mask="99/99/9999" 
-							placeholder="dd/mm/yyyy" navigator="true" showTodayButton="true" inputStyle="true"  yearRange="c-40:c+20" />
-
-							<p:outputLabel value="nit" />
-							<p:inputMask mask="9999-99999999-999-9" value="#{empleadoController.empleado.nit}" />
-
-							<p:outputLabel value="dui" />
-							<p:inputMask mask="9999999-9" value="#{empleadoController.empleado.dui}" />
+		<p:tabView orientation="left">
+			<p:tab title="Registro de informacion I">
+				<p:panelGrid columns="4">
+					<p:outputLabel value="Nombre Completo" />
+					<p:inputText value="#{empleadoController.empleado.nombres}" />
+		
+					<p:outputLabel value="Apellidos"></p:outputLabel>
+					<p:inputText value="#{empleadoController.empleado.apellidos}" />
+		
+					<p:outputLabel value="sexo" />
+					<p:selectOneRadio value="#{empleadoController.empleado.sexo}">
+							<f:selectItem itemLabel="Masculino" itemValue="M" />
+							<f:selectItem itemLabel="Fenino" itemValue="F" />
+							<f:selectItem itemLabel="Otro genero" itemValue="O" />
+					</p:selectOneRadio>
+		
+						<p:outputLabel value="fecha Nacimiento" />
+						<p:calendar value="#{empleadoController.empleado.fechaNacimiento}"
+							mask="99/99/9999" placeholder="dd/mm/yyyy" navigator="true"
+							showTodayButton="true" inputStyle="true" yearRange="c-40:c+20" />
+		
+						<p:outputLabel value="nit" />
+						<p:inputMask mask="9999-99999999-999-9"
+							value="#{empleadoController.empleado.nit}" />
+		
+						<p:outputLabel value="dui" />
+						<p:inputMask mask="9999999-9"
+							value="#{empleadoController.empleado.dui}" />
+		
+						<p:outputLabel value="isss" />
+						<p:inputMask mask="999999999"
+							value="#{empleadoController.empleado.isss}" />
+		
+						<p:outputLabel value="nup" />
+						<p:inputMask mask="99999999999"
+							value="#{empleadoController.empleado.nup}" />
+		
+						<p:outputLabel value="Salario nominal" />
+						<p:inputText value="#{empleadoController.empleado.atributo1}"
+							placeholder="$" />
 							
-							<p:outputLabel value="isss" />
-							<p:inputMask mask="999999999" value="#{empleadoController.empleado.isss}" />
-							
-							<p:outputLabel value="nup" />
-							<p:inputMask mask="99999999999" value="#{empleadoController.empleado.nup}" />
-
-							<p:outputLabel value="Salario nominal"/>
-							<p:inputText value="#{empleadoController.empleado.atributo1}" placeholder="$"/>
-
-							<p:outputLabel value="Creado por" />
-							<p:selectOneMenu value="#{empleadoController.iduser}">
-								<f:selectItems value="#{usuarioController.listuser}" var="usu"
-									itemLabel="#{usu.nombre}" itemValue="#{usu.idUser}"></f:selectItems>
-							</p:selectOneMenu>
-
-							<p:outputLabel value="Cargo" />
-							<p:selectOneMenu value="#{empleadoController.idcargo}">
-								<f:selectItems value="#{cargoController.listaCargo}" var="cargo"
-									itemLabel="#{cargo.nombre}" itemValue="#{cargo.idCargo}"></f:selectItems>
-							</p:selectOneMenu>
-
-							<p:outputLabel value="Area de la empresa" />
-							<p:selectOneMenu value="#{empleadoController.iddepart}">
-								<f:selectItems value="#{departamentoController.listaDepa}"
-									var="depa" itemLabel="#{depa.nombre}"
-									itemValue="#{depa.idDepartamento}" />
-							</p:selectOneMenu>
-							
-							<p:outputLabel value="fecha inicio" />
-							<p:calendar value="#{empleadoController.empleado.fechaInicio}" mask="99/99/9999" placeholder="dd/mm/yyyy" navigator="true" showTodayButton="true" inputStyle="true"/>
-
-							<p:outputLabel value="fecha finalizacion" />
-							<p:calendar value="#{empleadoController.empleado.fechaFin}" mask="99/99/9999" placeholder="dd/mm/yyyy" navigator="true" showTodayButton="true" inputStyle="true" />
-							
-							<p:commandButton value="Guardar" action="#{empleadoController.guardar()}" update="gr,datos" > </p:commandButton>
-							
-						</p:panelGrid>
-
+						<p:outputLabel value="Estado" />	
+						<p:selectOneRadio>
+							<f:selectItem itemLabel="Activo" itemValue="1" ></f:selectItem>
+							<f:selectItem itemLabel="Inactivo" itemValue="0"></f:selectItem>
+						</p:selectOneRadio>
+					</p:panelGrid>
+				</p:tab>
+				<p:tab title="Registro de informacion II">
+					<p:panelGrid columns="2">		
+						<p:outputLabel value="Creado por" />
+						<p:selectOneMenu value="#{empleadoController.iduser}">
+							<f:selectItems value="#{empleadoController.selectUser()}" var="usu"
+								itemLabel="#{usu.nombre}" itemValue="#{usu.idUser}"></f:selectItems>
+						</p:selectOneMenu>
+		
+						<p:outputLabel value="Area de la empresa" />	
+						<p:selectOneMenu value="#{empleadoController.iddepart}">
+						<f:selectItem itemLabel="Seleccionar" itemValue="0"></f:selectItem>
+							<f:selectItems value="#{empleadoController.selectDepa()}"
+								var="depa" itemLabel="#{depa.nombre}"
+								itemValue="#{depa.idDepartamento}" />
+						</p:selectOneMenu>
+		
+						<p:outputLabel value="Cargo" />
+						<p:selectOneMenu value="#{empleadoController.idcargo}">
+							<f:selectItem itemLabel="Seleccionar" itemValue="0"></f:selectItem>
+							<f:selectItems value="#{empleadoController.selectCargo()}" var="cargo"
+								itemLabel="#{cargo.nombre}" itemValue="#{cargo.idCargo}"></f:selectItems>
+						</p:selectOneMenu>
+		
+						
+						<p:outputLabel value="fecha inicio" />
+						<p:calendar value="#{empleadoController.empleado.fechaInicio}"
+							mask="99/99/9999" placeholder="dd/mm/yyyy" navigator="true"
+							showTodayButton="true" inputStyle="true" />
+		
+						<p:outputLabel value="fecha finalizacion" />
+						<p:calendar value="#{empleadoController.empleado.fechaFin}"
+							mask="99/99/9999" placeholder="dd/mm/yyyy" navigator="true"
+							showTodayButton="true" inputStyle="true" />
+		
+						<p:commandButton value="Guardar"
+							action="#{empleadoController.guardar()}" update="frmdt:datos,gr" onclick="PF('emp').hide();">
+						</p:commandButton>
+					</p:panelGrid>
+				</p:tab>
+				
+				<p:tab title="Salario">
+					
+				</p:tab>
+				
+			</p:tabView>
 		</h:form>
 	</p:dialog>
 </h:body>

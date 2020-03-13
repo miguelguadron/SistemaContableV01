@@ -18,29 +18,34 @@ public class DeducionesLegale implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int idImpuesto;
 	private String atributo1;
-	private String atributo10;
-	private String atributo11;
-	private String atributo12;
-	private String atributo13;
-	private String atributo14;
-	private String atributo15;
 	private String atributo2;
 	private String atributo3;
 	private String atributo4;
 	private String atributo5;
-	private String atributo6;
-	private String atributo7;
-	private String atributo8;
-	private String atributo9;
 	private Date fechaCreacion;
-	private String nombreImpuesto;
-	private BigDecimal porcentaje;
+	private String nombreDocumento;
+	private String nombreImpuesto1;
+	private String nombreImpuesto2;
+	private String nombreImpuesto3;
+	private String nombreImpuesto4;
+	private String nombreImpuesto5;
+	private String nombreImpuesto6;
+	private String nombreImpuesto7;
+	private BigDecimal porcentaje1;
+	private BigDecimal porcentaje2;
+	private BigDecimal porcentaje3;
+	private BigDecimal porcentaje4;
+	private BigDecimal porcentaje5;
+	private BigDecimal porcentaje6;
+	private BigDecimal porcentaje7;
 	private int sumaResta;
 	private List<Configuracion> configuracions;
 	private Estado estado;
+	private List<Planilla> planillas;
 	private List<SueldoFijo> sueldoFijos;
 
 	public DeducionesLegale() {
+		estado = new Estado();
 	}
 
 
@@ -62,60 +67,6 @@ public class DeducionesLegale implements Serializable {
 
 	public void setAtributo1(String atributo1) {
 		this.atributo1 = atributo1;
-	}
-
-
-	public String getAtributo10() {
-		return this.atributo10;
-	}
-
-	public void setAtributo10(String atributo10) {
-		this.atributo10 = atributo10;
-	}
-
-
-	public String getAtributo11() {
-		return this.atributo11;
-	}
-
-	public void setAtributo11(String atributo11) {
-		this.atributo11 = atributo11;
-	}
-
-
-	public String getAtributo12() {
-		return this.atributo12;
-	}
-
-	public void setAtributo12(String atributo12) {
-		this.atributo12 = atributo12;
-	}
-
-
-	public String getAtributo13() {
-		return this.atributo13;
-	}
-
-	public void setAtributo13(String atributo13) {
-		this.atributo13 = atributo13;
-	}
-
-
-	public String getAtributo14() {
-		return this.atributo14;
-	}
-
-	public void setAtributo14(String atributo14) {
-		this.atributo14 = atributo14;
-	}
-
-
-	public String getAtributo15() {
-		return this.atributo15;
-	}
-
-	public void setAtributo15(String atributo15) {
-		this.atributo15 = atributo15;
 	}
 
 
@@ -155,42 +106,6 @@ public class DeducionesLegale implements Serializable {
 	}
 
 
-	public String getAtributo6() {
-		return this.atributo6;
-	}
-
-	public void setAtributo6(String atributo6) {
-		this.atributo6 = atributo6;
-	}
-
-
-	public String getAtributo7() {
-		return this.atributo7;
-	}
-
-	public void setAtributo7(String atributo7) {
-		this.atributo7 = atributo7;
-	}
-
-
-	public String getAtributo8() {
-		return this.atributo8;
-	}
-
-	public void setAtributo8(String atributo8) {
-		this.atributo8 = atributo8;
-	}
-
-
-	public String getAtributo9() {
-		return this.atributo9;
-	}
-
-	public void setAtributo9(String atributo9) {
-		this.atributo9 = atributo9;
-	}
-
-
 	@Temporal(TemporalType.DATE)
 	@Column(name="fecha_creacion")
 	public Date getFechaCreacion() {
@@ -202,22 +117,146 @@ public class DeducionesLegale implements Serializable {
 	}
 
 
-	@Column(name="nombre_impuesto")
-	public String getNombreImpuesto() {
-		return this.nombreImpuesto;
+	@Column(name="nombre_documento")
+	public String getNombreDocumento() {
+		return this.nombreDocumento;
 	}
 
-	public void setNombreImpuesto(String nombreImpuesto) {
-		this.nombreImpuesto = nombreImpuesto;
+	public void setNombreDocumento(String nombreDocumento) {
+		this.nombreDocumento = nombreDocumento;
 	}
 
 
-	public BigDecimal getPorcentaje() {
-		return this.porcentaje;
+	@Column(name="nombre_impuesto1")
+	public String getNombreImpuesto1() {
+		return this.nombreImpuesto1;
 	}
 
-	public void setPorcentaje(BigDecimal porcentaje) {
-		this.porcentaje = porcentaje;
+	public void setNombreImpuesto1(String nombreImpuesto1) {
+		this.nombreImpuesto1 = nombreImpuesto1;
+	}
+
+
+	@Column(name="nombre_impuesto2")
+	public String getNombreImpuesto2() {
+		return this.nombreImpuesto2;
+	}
+
+	public void setNombreImpuesto2(String nombreImpuesto2) {
+		this.nombreImpuesto2 = nombreImpuesto2;
+	}
+
+
+	@Column(name="nombre_impuesto3")
+	public String getNombreImpuesto3() {
+		return this.nombreImpuesto3;
+	}
+
+	public void setNombreImpuesto3(String nombreImpuesto3) {
+		this.nombreImpuesto3 = nombreImpuesto3;
+	}
+
+
+	@Column(name="nombre_impuesto4")
+	public String getNombreImpuesto4() {
+		return this.nombreImpuesto4;
+	}
+
+	public void setNombreImpuesto4(String nombreImpuesto4) {
+		this.nombreImpuesto4 = nombreImpuesto4;
+	}
+
+
+	@Column(name="nombre_impuesto5")
+	public String getNombreImpuesto5() {
+		return this.nombreImpuesto5;
+	}
+
+	public void setNombreImpuesto5(String nombreImpuesto5) {
+		this.nombreImpuesto5 = nombreImpuesto5;
+	}
+
+
+	@Column(name="nombre_impuesto6")
+	public String getNombreImpuesto6() {
+		return this.nombreImpuesto6;
+	}
+
+	public void setNombreImpuesto6(String nombreImpuesto6) {
+		this.nombreImpuesto6 = nombreImpuesto6;
+	}
+
+
+	@Column(name="nombre_impuesto7")
+	public String getNombreImpuesto7() {
+		return this.nombreImpuesto7;
+	}
+
+	public void setNombreImpuesto7(String nombreImpuesto7) {
+		this.nombreImpuesto7 = nombreImpuesto7;
+	}
+
+
+	public BigDecimal getPorcentaje1() {
+		return this.porcentaje1;
+	}
+
+	public void setPorcentaje1(BigDecimal porcentaje1) {
+		this.porcentaje1 = porcentaje1;
+	}
+
+
+	public BigDecimal getPorcentaje2() {
+		return this.porcentaje2;
+	}
+
+	public void setPorcentaje2(BigDecimal porcentaje2) {
+		this.porcentaje2 = porcentaje2;
+	}
+
+
+	public BigDecimal getPorcentaje3() {
+		return this.porcentaje3;
+	}
+
+	public void setPorcentaje3(BigDecimal porcentaje3) {
+		this.porcentaje3 = porcentaje3;
+	}
+
+
+	public BigDecimal getPorcentaje4() {
+		return this.porcentaje4;
+	}
+
+	public void setPorcentaje4(BigDecimal porcentaje4) {
+		this.porcentaje4 = porcentaje4;
+	}
+
+
+	public BigDecimal getPorcentaje5() {
+		return this.porcentaje5;
+	}
+
+	public void setPorcentaje5(BigDecimal porcentaje5) {
+		this.porcentaje5 = porcentaje5;
+	}
+
+
+	public BigDecimal getPorcentaje6() {
+		return this.porcentaje6;
+	}
+
+	public void setPorcentaje6(BigDecimal porcentaje6) {
+		this.porcentaje6 = porcentaje6;
+	}
+
+
+	public BigDecimal getPorcentaje7() {
+		return this.porcentaje7;
+	}
+
+	public void setPorcentaje7(BigDecimal porcentaje7) {
+		this.porcentaje7 = porcentaje7;
 	}
 
 
@@ -265,6 +304,31 @@ public class DeducionesLegale implements Serializable {
 
 	public void setEstado(Estado estado) {
 		this.estado = estado;
+	}
+
+
+	//bi-directional many-to-one association to Planilla
+	@OneToMany(mappedBy="deducionesLegale", fetch=FetchType.EAGER)
+	public List<Planilla> getPlanillas() {
+		return this.planillas;
+	}
+
+	public void setPlanillas(List<Planilla> planillas) {
+		this.planillas = planillas;
+	}
+
+	public Planilla addPlanilla(Planilla planilla) {
+		getPlanillas().add(planilla);
+		planilla.setDeducionesLegale(this);
+
+		return planilla;
+	}
+
+	public Planilla removePlanilla(Planilla planilla) {
+		getPlanillas().remove(planilla);
+		planilla.setDeducionesLegale(null);
+
+		return planilla;
 	}
 
 
