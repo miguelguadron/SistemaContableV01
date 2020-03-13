@@ -36,7 +36,6 @@ public class SueldoFijo implements Serializable {
 	private int vacaciones;
 	private List<Documento> documentos;
 	private List<Planilla> planillas;
-	private DeducionesLegale deducionesLegale;
 	private Empleado empleado;
 	private DeducionesLegale deducionesLegale;
 
@@ -263,18 +262,6 @@ public class SueldoFijo implements Serializable {
 		planilla.setSueldoFijo(null);
 
 		return planilla;
-	}
-
-
-	//bi-directional many-to-one association to DeducionesLegale
-	@ManyToOne
-	@JoinColumn(name="id_impuesto")
-	public DeducionesLegale getDeducionesLegale() {
-		return this.deducionesLegale;
-	}
-
-	public void setDeducionesLegale(DeducionesLegale deducionesLegale) {
-		this.deducionesLegale = deducionesLegale;
 	}
 
 
