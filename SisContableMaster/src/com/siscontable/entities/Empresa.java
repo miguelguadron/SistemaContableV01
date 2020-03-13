@@ -35,6 +35,7 @@ public class Empresa implements Serializable {
 	private String sector;
 	private String telefono;
 	private List<Configuracion> configuracions;
+	private List<Documento> documentos;
 	private List<Empleado> empleados;
 	private Estado estado;
 	private List<Usuario> usuarios;
@@ -252,6 +253,31 @@ public class Empresa implements Serializable {
 		configuracion.setEmpresa(null);
 
 		return configuracion;
+	}
+
+
+	//bi-directional many-to-one association to Documento
+	@OneToMany(mappedBy="empresa", fetch=FetchType.EAGER)
+	public List<Documento> getDocumentos() {
+		return this.documentos;
+	}
+
+	public void setDocumentos(List<Documento> documentos) {
+		this.documentos = documentos;
+	}
+
+	public Documento addDocumento(Documento documento) {
+		getDocumentos().add(documento);
+		documento.setEmpresa(this);
+
+		return documento;
+	}
+
+	public Documento removeDocumento(Documento documento) {
+		getDocumentos().remove(documento);
+		documento.setEmpresa(null);
+
+		return documento;
 	}
 
 

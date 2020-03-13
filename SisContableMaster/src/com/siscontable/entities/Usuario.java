@@ -22,6 +22,7 @@ public class Usuario implements Serializable {
 	private Date fechaRegistro;
 	private String nombre;
 	private String usuario;
+	private List<Documento> documentos;
 	private List<Empleado> empleados;
 	private Empresa empresa;
 
@@ -105,6 +106,31 @@ public class Usuario implements Serializable {
 
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
+	}
+
+
+	//bi-directional many-to-one association to Documento
+	@OneToMany(mappedBy="usuario", fetch=FetchType.EAGER)
+	public List<Documento> getDocumentos() {
+		return this.documentos;
+	}
+
+	public void setDocumentos(List<Documento> documentos) {
+		this.documentos = documentos;
+	}
+
+	public Documento addDocumento(Documento documento) {
+		getDocumentos().add(documento);
+		documento.setUsuario(this);
+
+		return documento;
+	}
+
+	public Documento removeDocumento(Documento documento) {
+		getDocumentos().remove(documento);
+		documento.setUsuario(null);
+
+		return documento;
 	}
 
 

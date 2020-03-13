@@ -27,7 +27,7 @@ public class Empleado implements Serializable {
 	private String atributo8;
 	private String atributo9;
 	private String dui;
-	private byte estado;
+	private int estado;
 	private Date fechaFin;
 	private Date fechaInicio;
 	private Date fechaNacimiento;
@@ -42,6 +42,7 @@ public class Empleado implements Serializable {
 	private Empresa empresa;
 	private Familiar familiar;
 	private Usuario usuario;
+	private List<Planilla> planillas;
 	private List<SueldoFijo> sueldoFijos;
 
 	public Empleado() {
@@ -168,11 +169,11 @@ public class Empleado implements Serializable {
 	}
 
 
-	public byte getEstado() {
+	public int getEstado() {
 		return this.estado;
 	}
 
-	public void setEstado(byte estado) {
+	public void setEstado(int estado) {
 		this.estado = estado;
 	}
 
@@ -323,6 +324,31 @@ public class Empleado implements Serializable {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+
+	//bi-directional many-to-one association to Planilla
+	@OneToMany(mappedBy="empleado", fetch=FetchType.EAGER)
+	public List<Planilla> getPlanillas() {
+		return this.planillas;
+	}
+
+	public void setPlanillas(List<Planilla> planillas) {
+		this.planillas = planillas;
+	}
+
+	public Planilla addPlanilla(Planilla planilla) {
+		getPlanillas().add(planilla);
+		planilla.setEmpleado(this);
+
+		return planilla;
+	}
+
+	public Planilla removePlanilla(Planilla planilla) {
+		getPlanillas().remove(planilla);
+		planilla.setEmpleado(null);
+
+		return planilla;
 	}
 
 

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -16,7 +17,7 @@ import java.util.Date;
 public class SueldoFijo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int idSalario;
-	private byte aguinaldo;
+	private int aguinaldo;
 	private String atributo1;
 	private String atributo2;
 	private String atributo3;
@@ -29,9 +30,13 @@ public class SueldoFijo implements Serializable {
 	private int diasLaborados;
 	private int diasVacacionados;
 	private Date fechaCreacion;
+	private int horasExtras;
 	private int horasLaboradas;
 	private BigDecimal sueldo;
-	private byte vacaciones;
+	private int vacaciones;
+	private List<Documento> documentos;
+	private List<Planilla> planillas;
+	private DeducionesLegale deducionesLegale;
 	private Empleado empleado;
 	private DeducionesLegale deducionesLegale;
 
@@ -51,11 +56,11 @@ public class SueldoFijo implements Serializable {
 	}
 
 
-	public byte getAguinaldo() {
+	public int getAguinaldo() {
 		return this.aguinaldo;
 	}
 
-	public void setAguinaldo(byte aguinaldo) {
+	public void setAguinaldo(int aguinaldo) {
 		this.aguinaldo = aguinaldo;
 	}
 
@@ -173,6 +178,16 @@ public class SueldoFijo implements Serializable {
 	}
 
 
+	@Column(name="horas_extras")
+	public int getHorasExtras() {
+		return this.horasExtras;
+	}
+
+	public void setHorasExtras(int horasExtras) {
+		this.horasExtras = horasExtras;
+	}
+
+
 	@Column(name="horas_laboradas")
 	public int getHorasLaboradas() {
 		return this.horasLaboradas;
@@ -192,12 +207,74 @@ public class SueldoFijo implements Serializable {
 	}
 
 
-	public byte getVacaciones() {
+	public int getVacaciones() {
 		return this.vacaciones;
 	}
 
-	public void setVacaciones(byte vacaciones) {
+	public void setVacaciones(int vacaciones) {
 		this.vacaciones = vacaciones;
+	}
+
+
+	//bi-directional many-to-one association to Documento
+	@OneToMany(mappedBy="sueldoFijo", fetch=FetchType.EAGER)
+	public List<Documento> getDocumentos() {
+		return this.documentos;
+	}
+
+	public void setDocumentos(List<Documento> documentos) {
+		this.documentos = documentos;
+	}
+
+	public Documento addDocumento(Documento documento) {
+		getDocumentos().add(documento);
+		documento.setSueldoFijo(this);
+
+		return documento;
+	}
+
+	public Documento removeDocumento(Documento documento) {
+		getDocumentos().remove(documento);
+		documento.setSueldoFijo(null);
+
+		return documento;
+	}
+
+
+	//bi-directional many-to-one association to Planilla
+	@OneToMany(mappedBy="sueldoFijo", fetch=FetchType.EAGER)
+	public List<Planilla> getPlanillas() {
+		return this.planillas;
+	}
+
+	public void setPlanillas(List<Planilla> planillas) {
+		this.planillas = planillas;
+	}
+
+	public Planilla addPlanilla(Planilla planilla) {
+		getPlanillas().add(planilla);
+		planilla.setSueldoFijo(this);
+
+		return planilla;
+	}
+
+	public Planilla removePlanilla(Planilla planilla) {
+		getPlanillas().remove(planilla);
+		planilla.setSueldoFijo(null);
+
+		return planilla;
+	}
+
+
+	//bi-directional many-to-one association to DeducionesLegale
+	@ManyToOne
+	@JoinColumn(name="id_impuesto")
+	public DeducionesLegale getDeducionesLegale() {
+		return this.deducionesLegale;
+	}
+
+	public void setDeducionesLegale(DeducionesLegale deducionesLegale) {
+		this.deducionesLegale = deducionesLegale;
 	}
 
 

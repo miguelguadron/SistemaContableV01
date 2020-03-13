@@ -41,28 +41,28 @@
 		</p:selectOneMenu>
 		
 		<p:outputLabel value="Numero Tributario" />
-		<p:inputText  value="#{empresaController.empresa.numeroTributario}" />
+		<p:inputMask mask="9999-99999999-999-9" value="#{empresaController.empresa.numeroTributario}" />
 		
 		<p:outputLabel value="Correo Electronco" />
 		<p:inputText  value="#{empresaController.empresa.correo}" />
 		
 		<p:outputLabel value="Telefono" />
-		<p:inputText  value="#{empresaController.empresa.telefono}" />
-		
-		<p:outputLabel value="Direccion" />
-		<p:inputText  value="#{empresaController.empresa.direccion}" />
+		<p:inputMask mask="9999-9999"  value="#{empresaController.empresa.telefono}" />
 		
 		<p:outputLabel value="Pais" />
 		<p:selectOneMenu value="#{empresaController.idpaiss}">
 			<f:selectItem itemLabel="Seleccionar" itemValue="0"></f:selectItem>
-			<f:selectItems value="#{paisController.listaPais}" var="pa" itemValue="#{pa.idPais}" itemLabel="#{pa.nombrePais}"></f:selectItems>
+			<f:selectItems value="#{empresaController.selectPais()}" var="pa" itemValue="#{pa.idPais}" itemLabel="#{pa.nombrePais}"></f:selectItems>
 		</p:selectOneMenu>
 		
 		<p:outputLabel value="Estado" />	
 		<p:selectOneMenu value="#{empresaController.idesta}">
 			<f:selectItem itemLabel="Seleccionar" itemValue="0"></f:selectItem>
-			<f:selectItems value="#{estadoController.listaEstado}" var="est" itemValue="#{est.idEstado}" itemLabel="#{est.nombre}"></f:selectItems>
+			<f:selectItems value="#{empresaController.selectEstado()}" var="est" itemValue="#{est.idEstado}" itemLabel="#{est.nombre}"></f:selectItems>
 		</p:selectOneMenu>
+		
+		<p:outputLabel value="Direccion" />
+		<p:inputText  value="#{empresaController.empresa.direccion}" />
 	</p:panelGrid>
 		
 		<p:commandButton value="Guardar" action="#{empresaController.guardar()}" update="gr"></p:commandButton>

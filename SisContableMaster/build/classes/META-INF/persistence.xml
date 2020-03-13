@@ -4,17 +4,21 @@
 		<class>com.siscontable.entities.Cargo</class>
 		<class>com.siscontable.entities.Configuracion</class>
 		<class>com.siscontable.entities.ContactoProv</class>
+		<class>com.siscontable.entities.CreditoFiscal</class>
 		<class>com.siscontable.entities.CuentasContable</class>
 		<class>com.siscontable.entities.DeducionesLegale</class>
 		<class>com.siscontable.entities.Departamento</class>
+		<class>com.siscontable.entities.Documento</class>
 		<class>com.siscontable.entities.Empleado</class>
 		<class>com.siscontable.entities.Empresa</class>
 		<class>com.siscontable.entities.Estado</class>
 		<class>com.siscontable.entities.Familiar</class>
 		<class>com.siscontable.entities.Movimiento</class>
 		<class>com.siscontable.entities.Pais</class>
+		<class>com.siscontable.entities.Planilla</class>
 		<class>com.siscontable.entities.Proveedor</class>
 		<class>com.siscontable.entities.Proyecto</class>
+		<class>com.siscontable.entities.RetencionIva</class>
 		<class>com.siscontable.entities.SueldoFijo</class>
 		<class>com.siscontable.entities.Usuario</class>
 		<properties>

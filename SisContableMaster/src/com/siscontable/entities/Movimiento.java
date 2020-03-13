@@ -32,13 +32,14 @@ public class Movimiento implements Serializable {
 	private String atributo7;
 	private String atributo8;
 	private String atributo9;
-	private Boolean autorizar;
+	private int autorizar;
 	private String codPlanilla;
 	private int estadoMovimiento;
 	private Date fechaCreacion;
 	private String nombreMovimiento;
 	private String observaciones;
 	private BigDecimal total;
+	private CreditoFiscal creditoFiscal;
 	private CuentasContable cuentasContable;
 	private Departamento departamento;
 	private Proveedor proveedor;
@@ -154,11 +155,11 @@ public class Movimiento implements Serializable {
 	}
 
 
-	public Boolean getAutorizar() {
+	public int getAutorizar() {
 		return this.autorizar;
 	}
 
-	public void setAutorizar(Boolean autorizar) {
+	public void setAutorizar(int autorizar) {
 		this.autorizar = autorizar;
 	}
 
@@ -219,6 +220,18 @@ public class Movimiento implements Serializable {
 
 	public void setTotal(BigDecimal total) {
 		this.total = total;
+	}
+
+
+	//bi-directional many-to-one association to CreditoFiscal
+	@ManyToOne
+	@JoinColumn(name="id_credito")
+	public CreditoFiscal getCreditoFiscal() {
+		return this.creditoFiscal;
+	}
+
+	public void setCreditoFiscal(CreditoFiscal creditoFiscal) {
+		this.creditoFiscal = creditoFiscal;
 	}
 
 
